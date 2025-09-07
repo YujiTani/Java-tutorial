@@ -44,5 +44,23 @@ class Main {
 
     mathScores.add(11);
     System.out.println("2回目のスコア配列チェック:" + mathScores);
+
+
+    for(String s : studentNames) {
+      System.out.println("名前:" + s);
+    }
+
+    for(Integer i : mathScores) {
+      System.out.println("スコア:" + i);
+    }
+
+    var ite = studentNames.iterator();
+    while(ite.hasNext()) {
+        ite.next();
+        ite.remove();
+    }
+    System.out.println("3回目のnames配列チェック:" + studentNames);
+
   }
+
 }
