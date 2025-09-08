@@ -54,7 +54,13 @@ class Main {
       System.out.println("スコア:" + i);
     }
 
-    var ite = studentNames.iterator();
+    // 逆から取得して表示
+    var ite = studentNames.listIterator(studentNames.size());
+    while(ite.hasPrevious()) {
+      System.out.println(ite.previous());
+    }
+
+
     while(ite.hasNext()) {
         ite.next();
         ite.remove();
