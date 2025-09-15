@@ -81,7 +81,7 @@ public class LinkedListCycle {
       return false;
     }
 
-    if (!(this.data.get(this.index - 1))) {
+    if (this.data.get(this.index - 1) == null || this.data.get(this.index - 1) == 0) {
       return false;
     }
 
