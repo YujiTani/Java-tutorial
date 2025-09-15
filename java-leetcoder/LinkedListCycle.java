@@ -8,11 +8,7 @@ import java.util.List;
 public class LinkedListCycle {
   public static void main(String[] args) {
     try {
-      // Stream APIを使ってコマンドライン引数をint配列に変換
-      int[] ints = Arrays.stream(args)
-      .mapToInt(s -> Integer.parseInt(s))
-      .toArray();
-
+      int[] ints = parseStringToInteger(args);
       LinkedListCycle listCycle = new LinkedListCycle(ints);
       listCycle.list();
     } catch(NumberFormatException e) {
@@ -27,7 +23,6 @@ public class LinkedListCycle {
     for (int i : intArray) {
       data.add(i);
     }
-
   }
 
   public void list() {
@@ -36,6 +31,34 @@ public class LinkedListCycle {
 
   public boolean hasCycle() {
     return false;
+  }
+
+  // StringをInt[]に変換
+  private static int[] parseStringToInteger(String[] strings) {
+    if (validation(strings)) {
+      return Arrays.stream(strings)
+      .mapToInt(s -> Integer.parseInt(s))
+      .toArray();
+    }
+    return new int[0];
+  }
+
+  // コンストラクターの受け取る値がStringかチェック
+  private static boolean validation(String[] string) {
+    if (string == null) {
+      System.err.println("引数がnullになっています");
+      return false;
+    }
+
+    if (!(string instanceof String[])) {
+      System.err.println("引数が String[] ではありません。現在の型 "
+      + string.getClass().getName());
+      return false;
+    }
+
+
+
+    return true;
   }
 }
 
