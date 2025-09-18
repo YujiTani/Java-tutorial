@@ -1,34 +1,40 @@
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Solution {
-    public static void main(String[] args){
-        int[] nums = {0,2,4,5,8,10,13,16,20};
-        int target = 30;
-        Solution solution = new Solution();
-
-        int result = solution.twoSum(target, nums);
-        if(result.length > 0) {
-            return Array.toString(result);
-        } else {
-            return "エラー";
-        }
-    }
-
-    public int[] twoSum(int target, int[] nums){
+    int[] twoSum(int target, int[] nums) {
         Map<Integer, Integer> hashMap = new HashMap<>();
 
-        for(int i = 0; i > nums.length - 1; i++) {
+        // 合わせて、13になるものが見つかればhashMapから index を取り出す。なければhashMapに追加。
+        for(int i = 0; i < nums.length -1; i++) {
             int comprement = target - nums[i];
-
             if(hashMap.containsKey(comprement)) {
-                return new Array{i, hashMap.get(complement)};
+                return new int[]{hashMap.get(comprement), i};
             } else {
-                hashMap.set(nums[i]);
+                hashMap.put(nums[i], i);
+                System.out.println(hashMap);
             }
         }
 
-        return new Array{};
+        return new int[]{};
     }
+
+    public static void main(String[] args) {
+        var solution = new Solution();
+        System.out.println(solution.getClass().getName());
+
+        int target = 13;
+        int[] nums = {0,1,3,5,7,8,10,13,15};
+        System.out.println("初期配列" + Arrays.toString(nums));
+
+        int[] result = solution.twoSum(target, nums);
+        if(result.length > 0) {
+            System.out.println(Arrays.toString(result));
+        } else {
+            System.err.print("エラー");
+        }
+    }
+    
 }
